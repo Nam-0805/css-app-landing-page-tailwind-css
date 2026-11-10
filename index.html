@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Acme App - Features</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Breakpoints: mobile 375px (default) · tablet 834px (md:) · desktop 1440px (lg:)
+      tailwind.config = {
+        theme: {
+          screens: {
+            md: "834px",
+            lg: "1440px",
+          },
+          extend: {
+            maxWidth: {
+              mobile: "375px",
+              tablet: "834px",
+              desktop: "1440px",
+            },
+          },
+        },
+      };
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,168 +31,75 @@
     />
   </head>
 
-  <body class="bg-[#f8f8ff]">
-    
   <body class="min-h-screen bg-[#f7f6fb] font-['Inter'] text-[#16142a] antialiased">
-    <!-- Header -->
-    <header class="px-3 pt-3">
-      <nav class="relative mx-auto max-w-6xl rounded-full bg-white px-8 py-4 shadow-sm md:px-12">
-        <input id="menu-toggle" type="checkbox" class="peer sr-only" aria-label="Toggle menu" />
-        <div class="flex items-center justify-between">
-          <a href="#home" class="text-xl font-bold tracking-tight">
-            Acme<span class="align-super text-[10px] leading-none text-[#5e44ff]">●</span>
-          </a>
+    <!-- Page wrapper: 375px mobile / 834px tablet / 1440px desktop -->
+    <div class="mx-auto w-full max-w-mobile md:max-w-tablet lg:max-w-desktop">
+      <!-- Header -->
+      <header class="px-4 pt-3 md:px-6 md:pt-4 lg:px-10 lg:pt-6">
+        <nav class="relative mx-auto rounded-full bg-white px-6 py-3 shadow-sm md:px-10 md:py-4 lg:max-w-6xl lg:px-12">
+          <input id="menu-toggle" type="checkbox" class="peer sr-only" aria-label="Toggle menu" />
+          <div class="flex items-center justify-between">
+            <a href="#home" class="text-lg font-bold tracking-tight md:text-xl lg:text-2xl">
+              Acme<span class="align-super text-[10px] leading-none text-[#5e44ff]">●</span>
+            </a>
 
-          <ul class="hidden items-center gap-10 text-xs font-medium md:flex">
-            <li><a href="#home" class="text-[#5b3df5] underline underline-offset-4">Home</a></li>
-            <li><a href="#features" class="hover:text-[#5b3df5]">Features</a></li>
-            <li><a href="#pricing" class="hover:text-[#5b3df5]">Pricing</a></li>
-            <li><a href="#contact" class="hover:text-[#5b3df5]">Contact</a></li>
-          </ul>
+            <ul class="hidden items-center gap-8 text-xs font-medium md:flex lg:gap-12 lg:text-sm">
+              <li><a href="#home" class="text-[#5b3df5] underline underline-offset-4">Home</a></li>
+              <li><a href="#features" class="hover:text-[#5b3df5]">Features</a></li>
+              <li><a href="#pricing" class="hover:text-[#5b3df5]">Pricing</a></li>
+              <li><a href="#contact" class="hover:text-[#5b3df5]">Contact</a></li>
+            </ul>
 
-          <label
-            for="menu-toggle"
-            class="cursor-pointer rounded-md p-1.5 text-slate-600 hover:bg-slate-100 md:hidden"
+            <label
+              for="menu-toggle"
+              class="cursor-pointer rounded-md p-1.5 text-slate-600 hover:bg-slate-100 md:hidden"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </label>
+          </div>
+
+          <!-- Mobile dropdown (CSS only: shown when the checkbox above is checked) -->
+          <ul
+            class="absolute left-0 right-0 top-full z-10 mt-2 hidden rounded-2xl bg-white py-3 text-center text-sm font-medium shadow-lg peer-checked:block md:!hidden"
           >
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </label>
-        </div>
+            <li><a href="#home" class="block py-2 text-[#5e44ff]">Home</a></li>
+            <li><a href="#features" class="block py-2">Features</a></li>
+            <li><a href="#pricing" class="block py-2">Pricing</a></li>
+            <li><a href="#contact" class="block py-2">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
 
-        <!-- Mobile dropdown (CSS only: shown when the checkbox above is checked) -->
-        <ul
-          class="absolute left-0 right-0 top-full mt-2 hidden rounded-2xl bg-white py-3 text-center text-sm font-medium shadow-lg peer-checked:block md:!hidden"
+      <main>
+        <!-- Hero -->
+        <section
+          id="home"
+          class="mx-auto px-4 pb-12 pt-14 text-center md:max-w-3xl md:px-6 md:pb-16 md:pt-20 lg:max-w-5xl lg:pb-24 lg:pt-28"
         >
-          <li><a href="#home" class="block py-2 text-[#5e44ff]">Home</a></li>
-          <li><a href="#features" class="block py-2">Features</a></li>
-          <li><a href="#pricing" class="block py-2">Pricing</a></li>
-          <li><a href="#contact" class="block py-2">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+          <span
+            class="inline-flex items-center gap-1.5 rounded-full bg-violet-200/70 px-3 py-1 text-[11px] font-medium text-[#3b2a99] lg:text-xs"
+          >
+            🚀 Acme Productivity App
+          </span>
 
-    <main>
-      <!-- Hero -->
-      <section id="home" class="mx-auto max-w-4xl px-4 pb-16 pt-20 text-center md:pt-24">
-        <span
-          class="inline-flex items-center gap-1.5 rounded-full bg-violet-200/70 px-3 py-1 text-[11px] font-medium text-[#3b2a99]"
-        >
-          🚀 Acme Productivity App
-        </span>
+          <h1 class="mt-5 text-4xl font-extrabold leading-tight tracking-tight md:mt-6 md:text-6xl lg:text-7xl">
+            Boost Your <span class="text-[#5e44ff]">Product</span>ivity
+          </h1>
 
-        <h1 class="mt-6 text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl md:text-7xl">
-          Boost Your <span class="text-[#5e44ff]">Product</span>ivity
-        </h1>
-
-        <p class="mx-auto mt-5 max-w-xl text-base font-semibold md:text-lg">
-          Streamline your workflow with our all-in-one productivity app.
-        </p>
-
-        <a
-          href="#contact"
-          class="mt-8 inline-block rounded-lg bg-[#16142a] px-6 py-3 text-xs font-semibold text-white transition hover:bg-slate-700"
-        >
-          Start Free Trial
-        </a>
-      </section>
-      
-    </main>
-    <!-- Features Section -->
-    <section id="features" class="py-9">
-      <div class="mx-auto flex w-[767px] gap-[13px]">
-
-        <!-- Card 1 -->
-        <article class="min-h-[174px] flex-1 rounded-2xl bg-[#dbe5f5] p-[18px]">
-          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-white/70 text-[#5e44ff]">
-            <svg
-              class="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3-5a9 9 0 0 0 6-8a3 3 0 0 0-3-3a9 9 0 0 0-8 6a6 6 0 0 0-5 3" />
-              <path d="M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3" />
-              <circle cx="15" cy="9" r="1" />
-            </svg>
-          </div>
-
-          <h2 class="mb-2 text-[16px] font-bold">
-            Streamlined Workflows
-          </h2>
-
-          <p class="text-[12px] leading-[18px]">
-            Automate repetitive tasks and focus on high-impact work
-            with our powerful productivity features.
+          <p class="mx-auto mt-4 max-w-xs text-sm font-semibold md:mt-5 md:max-w-xl md:text-lg lg:text-xl">
+            Streamline your workflow with our all-in-one productivity app.
           </p>
-        </article>
 
-        <!-- Card 2 -->
-        <article class="min-h-[174px] flex-1 rounded-2xl bg-[#dce1fb] p-[18px]">
-          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-white/70 text-[#5e44ff]">
-            <svg
-              class="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M3 4h18" />
-              <path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4" />
-              <path d="M12 16v4" />
-              <path d="M9 20h6" />
-              <path d="m8 12 3-3 2 2 3-3" />
-            </svg>
-          </div>
-
-          <h2 class="mb-2 text-[16px] font-bold">
-            Blazing Fast Performance
-          </h2>
-
-          <p class="text-[12px] leading-[18px]">
-            Experience lightning-fast performance and instant
-            responsiveness with our cutting-edge technology.
-          </p>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="min-h-[174px] flex-1 rounded-2xl bg-[#e9e0f5] p-[18px]">
-          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-white/70 text-[#5e44ff]">
-            <svg
-              class="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M9 10h.01" />
-              <path d="M15 10h.01" />
-              <path d="M9.5 15a3.5 3.5 0 0 0 5 0" />
-            </svg>
-          </div>
-
-          <h2 class="mb-2 text-[16px] font-bold">
-            Intuitive Interface
-          </h2>
-
-          <p class="text-[12px] leading-[18px]">
-            Our user-friendly interface makes it easy for anyone
-            to streamline their workflow.
-          </p>
-        </article>
-
-      </div>
-    </section>
+          <a
+            href="#contact"
+            class="mt-7 inline-block rounded-lg bg-[#16142a] px-6 py-3 text-xs font-semibold text-white transition hover:bg-slate-700 md:mt-8 lg:px-8 lg:py-4 lg:text-sm"
+          >
+            Start Free Trial
+          </a>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
